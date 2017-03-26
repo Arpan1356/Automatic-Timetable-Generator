@@ -6,12 +6,15 @@ public class Start {
 	private JFrame frmStart = new JFrame("Automatic Timetable Generator");
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu mnFile = new JMenu("File");
-	private JLabel backImage = new JLabel(new ImageIcon("imgs\\1.jpg"));
+	private JLabel backImage = new JLabel(new ImageIcon("imgs\\12.jpg"));
 	private JLabel title = new JLabel("VIT Academics Timetable");
-	private JButton admin = new JButton("Admin", new ImageIcon("imgs\\licon.png"));
-	private JButton stud = new JButton("Student", new ImageIcon("imgs\\stud.png"));
-	private JButton prof = new JButton("Professor", new ImageIcon("imgs\\prof.png"));
-	private JButton exit = new JButton("EXIT", new ImageIcon("imgs\\exit.png"));
+	private JLabel adminLabel = new JLabel("ADMIN");
+	//private JLabel studLabel = new JLabel("STUDENT");
+	//private JLabel profLabel = new JLabel("PROFESSOR");
+	private JButton admin = new JButton("Admin", new ImageIcon("imgs\\admin2.jpg"));
+	private JButton stud = new JButton("Student", new ImageIcon("imgs\\stud123.jpg"));
+	private JButton prof = new JButton("Professor", new ImageIcon("imgs\\prof123.jpg"));
+	private JButton exit = new JButton("EXIT", new ImageIcon("imgs\\exit.jpg"));
 
 	public static void main(String[] args) {
 		try {
@@ -20,8 +23,9 @@ public class Start {
 		catch(Exception e) {
 		}
 
-		new Start();
-		//new databaseInput();
+		//new Start();
+		//new adminInput();
+		new databaseInput();
 	}
 
 	public Start() {
@@ -42,6 +46,7 @@ public class Start {
 			}
 		});
 		mnFile.add(mntmAboutUs);
+		
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mntmExit.addActionListener(new ActionListener() {
@@ -61,18 +66,24 @@ public class Start {
 		backImage.add(title);
 		
 		//button admin
-		admin.setBounds(100, 300, 200, 50);
+		admin.setBounds(130, 200, 120, 120);
+		admin.setToolTipText("ADMIN");
+		adminLabel.setBounds(20, 200, 200, 150);
+		adminLabel.setFont(new Font("Arial", Font.BOLD, 20));
+		adminLabel.setForeground(Color.white);
+		admin.setContentAreaFilled(false);
 		admin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmStart.dispose();
 				new Login();
 			}
 		});
-		//admin.setBorder(BorderFactory.createEmptyBorder());
-		//admin.setContentAreaFilled(false);
 		backImage.add(admin);
+		//backImage.add(adminLabel);
 		//button student
-		stud.setBounds(100, 360, 200, 50);
+		stud.setBounds(130, 330, 120, 120);
+		stud.setToolTipText("STUDENT");
+		stud.setContentAreaFilled(false);
 		stud.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmStart.dispose();
@@ -80,8 +91,11 @@ public class Start {
 			}
 		});
 		backImage.add(stud);
+		
 		//button prof
-		prof.setBounds(100, 420, 200, 50);
+		prof.setBounds(130, 460, 120, 120);
+		prof.setToolTipText("PROFESSOR");
+		prof.setContentAreaFilled(false);
 		prof.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmStart.dispose();
@@ -90,7 +104,9 @@ public class Start {
 		});
 		backImage.add(prof);
 		//button admin
-		exit.setBounds(100, 480, 200, 50);
+		exit.setBounds(800, 480, 120, 100);
+		exit.setToolTipText("EXIT");
+		exit.setContentAreaFilled(false);
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);

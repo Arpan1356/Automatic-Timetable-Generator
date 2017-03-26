@@ -20,7 +20,7 @@ public class Login {
 		frmLogin.setLocationRelativeTo(null);
 		
 		//background
-		JLabel backImage = new JLabel(new ImageIcon("imgs\\Login.png"));
+		JLabel backImage = new JLabel(new ImageIcon("imgs\\12.png"));
 		frmLogin.add(backImage);
 		backImage.setLayout(null);
 		

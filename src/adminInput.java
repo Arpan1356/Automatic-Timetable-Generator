@@ -5,6 +5,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -14,16 +18,44 @@ import javax.swing.table.DefaultTableModel;
 
 public class adminInput {
 	JFrame frame;
+	JMenuBar bar = new JMenuBar();
+	JMenu option = new JMenu("Options");
 	JTabbedPane tabPane;
 	JTable table1,table2,table3,table4,table5;
+	JLabel label11,label12,label13,label21,label22,label23,label31,label32,label33,label41,label42,label43,label51,label52,label53,label54;
 	JTextField text11,text12,text13,text21,text22,text23,text31,text32,text33,text41,text42,text43,text51,text52,text53,text54;
 	JPanel panel1, panel2, panel3, panel4, panel5;
 	JButton add1,delete1,update1,add2,delete2,update2,add3,delete3,update3,add4,delete4,update4,add5,delete5,update5;
     DefaultTableModel model1,model2,model3,model4,model5;
+    
 
     public adminInput(){
         // create JFrame and JTable
         frame = new JFrame("ADMIN");
+        
+        frame.setJMenuBar(bar);
+        bar.add(option);
+        JMenuItem i1 = new JMenuItem("Back");
+        i1.addActionListener( new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new AdminLog();
+			}
+        }
+        );
+        JMenuItem i2 = new JMenuItem("Log Out");
+        i2.addActionListener( new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new Start();
+			}
+        }
+        );
+        option.add(i1);
+        option.add(i2);
+        
+        
+        
         frame.setLayout(new BorderLayout());
         tabPane = new JTabbedPane();
         
@@ -50,7 +82,7 @@ public class adminInput {
         Object[] columns2 = {"ID","Name","Age"};
         Object[] columns3 = {"Number","Size","Computer"};
         Object[] columns4 = {"Batch ID","Name","Strength"};
-        Object[] columns5 = {"Batch ID","Course Code","Student Group","Duration"};
+        Object[] columns5 = {"Batch ID","Course Code","Duration","Professor ID"};
         
         model1 = new DefaultTableModel();
         model1.setColumnIdentifiers(columns1);
@@ -93,6 +125,24 @@ public class adminInput {
         text53 = new JTextField();
         text54 = new JTextField();
         
+        label11 = new JLabel("Code");
+        label12 = new JLabel("Name");
+        label13 = new JLabel("Department");
+        label21 = new JLabel("ID");
+        label22 = new JLabel("Name");
+        label23 = new JLabel("Age");
+        label31 = new JLabel("Number");
+        label32 = new JLabel("Size");
+        label33 = new JLabel("Computer");
+        label41 = new JLabel("Batch ID");
+        label42 = new JLabel("Name");
+        label43 = new JLabel("Strength");
+        label51 = new JLabel("Batch ID");
+        label52 = new JLabel("Course Code");
+        label53 = new JLabel("Duration");
+        label54 = new JLabel("Professor ID");
+        
+        
         // create JButtons
         add1 = new JButton("Add");
         delete1 = new JButton("Delete");
@@ -130,6 +180,27 @@ public class adminInput {
         text52.setBounds(120, 350, 100, 25);
         text53.setBounds(120, 380, 100, 25);
         text54.setBounds(120, 410, 100, 25);
+        
+        label11.setBounds(20, 320, 100, 25);
+        label12.setBounds(20, 350, 100, 25);
+        label13.setBounds(20, 380, 100, 25);
+        
+        label21.setBounds(20, 320, 100, 25);
+        label22.setBounds(20, 350, 100, 25);
+        label23.setBounds(20, 380, 100, 25);
+        
+        label31.setBounds(20, 320, 100, 25);
+        label32.setBounds(20, 350, 100, 25);
+        label33.setBounds(20, 380, 100, 25);
+        
+        label41.setBounds(20, 320, 100, 25);
+        label42.setBounds(20, 350, 100, 25);
+        label43.setBounds(20, 380, 100, 25);
+        
+        label51.setBounds(20, 320, 100, 25);
+        label52.setBounds(20, 350, 100, 25);
+        label53.setBounds(20, 380, 100, 25);
+        label54.setBounds(20, 410, 100, 25);
         
         add1.setBounds(350, 320, 100, 25);
         update1.setBounds(350, 365, 100, 25);
@@ -189,6 +260,23 @@ public class adminInput {
         panel5.add(text52);
         panel5.add(text53);
         panel5.add(text54);
+        
+        panel1.add(label11);
+        panel1.add(label12);
+        panel1.add(label13);
+        panel2.add(label21);
+        panel2.add(label22);
+        panel2.add(label23);
+        panel3.add(label31);
+        panel3.add(label32);
+        panel3.add(label33);
+        panel4.add(label41);
+        panel4.add(label42);
+        panel4.add(label43);
+        panel5.add(label51);
+        panel5.add(label52);
+        panel5.add(label53);
+        panel5.add(label54);
     
         // add JButtons to the jframe
         panel1.add(add1);

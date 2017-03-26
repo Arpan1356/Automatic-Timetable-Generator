@@ -1,24 +1,53 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
+import java.util.Vector;
 
 public class databaseInput {
 	JFrame dbFrame;
+	JMenuBar bar = new JMenuBar();
+	JMenu option = new JMenu("Options");
 	JTable table1,table2,table3,table4,table5;
 	DefaultTableModel model1,model2,model3,model4,model5;
 	JTabbedPane pane;
 	JPanel panel1,panel2,panel3,panel4,panel5;
 	String url = "jdbc:mysql://localhost:3306/timetabledata1";
-	course[] courses_data;
-	stud_group[] stud_group_data;
-	professor[] professor_data;
-	class_[] class_data;
-	classroom[] classroom_data;
+
+	Vector<stud_group> stud_group_data;
+	Vector<course> course_data;
+	Vector<professor> professor_data;
+	Vector<class_> class_data;
+	Vector<classroom> classroom_data;
 	
 	public databaseInput(){
 		//setting frame
 		dbFrame = new JFrame("DATABASE");
+		
+		dbFrame.setJMenuBar(bar);
+        bar.add(option);
+        JMenuItem i1 = new JMenuItem("Back");
+        i1.addActionListener( new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				dbFrame.dispose();
+				new AdminLog();
+			}
+        }
+        );
+        JMenuItem i2 = new JMenuItem("Log Out");
+        i2.addActionListener( new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				dbFrame.dispose();
+				new Start();
+			}
+        }
+        );
+        option.add(i1);
+        option.add(i2);
+		
+		
+		
 		dbFrame.setSize(960,600);
 		dbFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		dbFrame.setLocationRelativeTo(null);
@@ -45,7 +74,7 @@ public class databaseInput {
         Object[] columns2 = {"ID","Name","Age"};
         Object[] columns3 = {"Number","Size","Computer"};
         Object[] columns4 = {"Batch ID","Name","Strength"};
-        Object[] columns5 = {"Batch ID","Course Code","Student Group","Duration"};
+        Object[] columns5 = {"Batch ID","Course Code","Duration","Professor ID"};
         
         model1 = new DefaultTableModel();
         model1.setColumnIdentifiers(columns1);
@@ -57,8 +86,9 @@ public class databaseInput {
         model4.setColumnIdentifiers(columns4);
         model5 = new DefaultTableModel();
         model5.setColumnIdentifiers(columns5);
+        System.out.println("this is all we know");
         //table ready to be filled now
-		/*
+		
         try{
         	Class.forName("com.mysql.jdbc.Driver");
         	Connection c = DriverManager.getConnection(url,"root","dotapro");
@@ -70,13 +100,55 @@ public class databaseInput {
         	
         	Statement s = c.createStatement();
         	ResultSet res1 = s.executeQuery(q1);
-        	ResultSet res2 = s.executeQuery(q2);
-        	ResultSet res3 = s.executeQuery(q3);
-        	ResultSet res4 = s.executeQuery(q4);
-        	ResultSet res5 = s.executeQuery(q5);
         	
+        	
+        	professor_data = new Vector<professor>();
+        	class_data = new Vector<class_>();
+        	course_data = new Vector<course>();
+        	stud_group_data = new Vector<stud_group>();
+        	classroom_data = new Vector<classroom>();
+        	
+        	while(res1.next()){
+        		String code =res1.getString(1);
+        		String name = res1.getString(2);	
+        		String department = res1.getString(3);
+        		course temp = new course(code,name,department);
+        		course_data.add(temp);
+        	}
+        	ResultSet res3 = s.executeQuery(q3);
+        	while(res3.next()){
+        		int number =res3.getInt(1);
+        		int size = res3.getInt(2);	
+        		boolean computer = res3.getBoolean(3);
+        		classroom temp = new classroom(number,size,computer);
+        		classroom_data.add(temp);
+        	}
+        	ResultSet res2 = s.executeQuery(q2);
+        	while(res2.next()){
+        		int id =res2.getInt(1);
+        		String name = res2.getString(2);	
+        		int age = res2.getInt(3);
+        		professor temp = new professor(id,name,age);
+        		professor_data.add(temp);
+        	}
 
-        
+        	ResultSet res4 = s.executeQuery(q4);
+        	while(res4.next()){
+        		int id =res4.getInt(1);
+        		String name = res4.getString(2);	
+        		int strength = res4.getInt(3);
+        		stud_group temp = new stud_group(id,name,strength);
+        		stud_group_data.add(temp);
+        	}
+        	ResultSet res5 = s.executeQuery(q5);
+        	while(res5.next()){
+        		String bat_id = res5.getString(1);
+        		String course_code = res5.getString(2);
+        		int dur =res5.getInt(3);
+        		int prof_id = res5.getInt(4);
+        		class_ temp = new class_(bat_id,course_code,dur,prof_id);
+        		class_data.add(temp);
+        	}        
         }
         catch(SQLException e){
         	e.printStackTrace();
@@ -84,12 +156,47 @@ public class databaseInput {
         catch(ClassNotFoundException e){
         	e.printStackTrace();
         }
-        
-        
-        */
-        
-        
-        
+        try{
+        for(course i:course_data){
+        	Object[] row = new Object[3];
+        	row[0] = i.code;
+        	row[1] = i.name;
+        	row[2] = i.department;
+        	model1.addRow(row);
+        }
+        for(professor i:professor_data){
+        	Object[] row = new Object[3];
+        	row[0] = i.id;
+        	row[1] = i.name;
+        	row[2] = i.age;
+        	model2.addRow(row);
+        }
+        for(classroom i:classroom_data){
+        	Object[] row = new Object[3];
+        	row[0] = i.number;
+        	row[1] = i.size;
+        	row[2] = i.computer;
+        	model3.addRow(row);
+        }
+        for(stud_group i:stud_group_data){
+        	Object[] row = new Object[3];
+        	row[0] = i.id;
+        	row[1] = i.name;
+        	row[2] = i.strength;
+        	model4.addRow(row);
+        }
+        for(class_ i:class_data){
+        	Object[] row = new Object[4];
+        	row[0] = i.batch_id;
+        	row[1] = i.course_code;
+        	row[2] = i.duration;
+        	row[3] = i.professor_id;
+        	model5.addRow(row);
+        }
+        }
+        catch(NullPointerException e){
+        	System.out.println("Please check database connection.");
+        }
         //setting model
         table1.setModel(model1);
         table1.setRowHeight(20);
@@ -101,6 +208,7 @@ public class databaseInput {
         table4.setRowHeight(20);
         table5.setModel(model5);
         table5.setRowHeight(20);
+        
 		
         JScrollPane pane1 = new JScrollPane(table1);
         JScrollPane pane2 = new JScrollPane(table2);

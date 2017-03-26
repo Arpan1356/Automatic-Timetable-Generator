@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class AdminLog{
 	private JFrame mainFrame;
-	private JButton newData,oldData;
+	private JButton newData,oldData,logout;
 	private JLabel label;
 	
 	public AdminLog(){
@@ -23,15 +23,21 @@ public class AdminLog{
 		label.setFont(new Font("Courier New", Font.BOLD, 24));
 		newData = new JButton("New Data");
 		oldData = new JButton("Existing Data");
+		logout = new JButton(new ImageIcon("imgs\\exit.jpg"));
+		logout.setToolTipText("LOG OUT");
+		logout.setContentAreaFilled(false);
 		
 		newData.setBounds(50, 250, 100, 30);
 		oldData.setBounds(50, 300, 100, 30);
+		logout.setBounds(600, 300, 200, 200);
 		
 		newData.addActionListener(new buttonListener());
 		oldData.addActionListener(new buttonListener());
+		logout.addActionListener(new buttonListener());
 		
 		mainFrame.add(newData);
 		mainFrame.add(oldData);
+		mainFrame.add(logout);
 		mainFrame.add(label);
 		
 		
@@ -49,6 +55,10 @@ public class AdminLog{
 			else if(e.getSource()== oldData){
 				new databaseInput();
 				//System.out.println("Call the old data frame");
+			}
+			else if(e.getSource() == logout){
+				mainFrame.dispose();
+				new Start();
 			}
 				
 		}

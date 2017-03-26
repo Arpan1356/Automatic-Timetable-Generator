@@ -77,7 +77,6 @@ class InputData {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 			cn=DriverManager.getConnection("Jdbc:Odbc:data");
 			st=cn.createStatement();
-
 			rs=st.executeQuery("SELECT * FROM course");
 			while (rs.next()) {					
 				course[i]=new CourseData();
