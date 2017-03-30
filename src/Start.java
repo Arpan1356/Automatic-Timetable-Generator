@@ -68,6 +68,7 @@ public class Start {
 		//button admin
 		admin.setBounds(130, 200, 120, 120);
 		admin.setToolTipText("ADMIN");
+		admin.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		adminLabel.setBounds(20, 200, 200, 150);
 		adminLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		adminLabel.setForeground(Color.white);
@@ -83,6 +84,7 @@ public class Start {
 		//button student
 		stud.setBounds(130, 330, 120, 120);
 		stud.setToolTipText("STUDENT");
+		stud.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		stud.setContentAreaFilled(false);
 		stud.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -95,6 +97,7 @@ public class Start {
 		//button prof
 		prof.setBounds(130, 460, 120, 120);
 		prof.setToolTipText("PROFESSOR");
+		prof.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		prof.setContentAreaFilled(false);
 		prof.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -106,6 +109,7 @@ public class Start {
 		//button admin
 		exit.setBounds(800, 480, 120, 100);
 		exit.setToolTipText("EXIT");
+		exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		exit.setContentAreaFilled(false);
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -43,8 +43,20 @@ public class databaseInput {
 			}
         }
         );
+        JMenuItem i3 = new JMenuItem("Create Timetable");
+        i3.addActionListener( new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				data d = new data(stud_group_data, course_data, professor_data,class_data,classroom_data);
+				GeneticAlgorithm g = new GeneticAlgorithm(d);
+				//Scheduler s = new Scheduler(d);
+				dbFrame.dispose();
+				//new Start();
+			}
+        }
+        );
         option.add(i1);
         option.add(i2);
+        option.add(i3);
 		
 		
 		
@@ -86,7 +98,6 @@ public class databaseInput {
         model4.setColumnIdentifiers(columns4);
         model5 = new DefaultTableModel();
         model5.setColumnIdentifiers(columns5);
-        System.out.println("this is all we know");
         //table ready to be filled now
 		
         try{

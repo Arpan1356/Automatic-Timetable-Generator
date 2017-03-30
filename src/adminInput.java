@@ -32,7 +32,6 @@ public class adminInput {
     public adminInput(){
         // create JFrame and JTable
         frame = new JFrame("ADMIN");
-        
         frame.setJMenuBar(bar);
         bar.add(option);
         JMenuItem i1 = new JMenuItem("Back");
@@ -323,24 +322,37 @@ public class adminInput {
             int i2 = table2.getSelectedRow();
             int i3 = table3.getSelectedRow();
             int i4 = table4.getSelectedRow();
-            int i5 = table5.getSelectedRow();
+            int i5 = table5.getSelectedRow();	
             
-            text11.setText(model1.getValueAt(i1, 0).toString());
-            text12.setText(model1.getValueAt(i1, 1).toString());
-            text13.setText(model1.getValueAt(i1, 2).toString());
+            if(i1 != -1){
+            	text11.setText(model1.getValueAt(i1, 0).toString());
+            	text12.setText(model1.getValueAt(i1, 1).toString());
+            	text13.setText(model1.getValueAt(i1, 2).toString());
+            }
+            if(i2 != -1){
             text21.setText(model2.getValueAt(i2, 0).toString());
             text22.setText(model2.getValueAt(i2, 1).toString());
             text23.setText(model2.getValueAt(i2, 2).toString());
+            }
+            
+            if(i3 != -1){
             text31.setText(model3.getValueAt(i3, 0).toString());
             text32.setText(model3.getValueAt(i3, 1).toString());
             text33.setText(model3.getValueAt(i3, 2).toString());
+            }
+            
+            if(i4 != -1){
             text41.setText(model4.getValueAt(i4, 0).toString());
             text42.setText(model4.getValueAt(i4, 1).toString());
             text43.setText(model4.getValueAt(i4, 2).toString());
+            }
+            
+            if(i5 != -1){
             text51.setText(model5.getValueAt(i5, 0).toString());
             text52.setText(model5.getValueAt(i5, 1).toString());
             text53.setText(model5.getValueAt(i5, 2).toString());
             text54.setText(model5.getValueAt(i5, 3).toString());
+            }
         }
         };
         
@@ -367,16 +379,82 @@ public class adminInput {
             }
         });
         
-        frame.setSize(1000,600);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        update2.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int i = table2.getSelectedRow();
+                if(i >= 0) 
+                {
+                   model2.setValueAt(text21.getText(), i, 0);
+                   model2.setValueAt(text22.getText(), i, 1);
+                   model2.setValueAt(text23.getText(), i, 2);
+                }
+                else
+                    System.out.println("Update Error");
+            }
+        });
+        
+        update3.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int i = table3.getSelectedRow();
+                if(i >= 0) 
+                {
+                   model3.setValueAt(text31.getText(), i, 0);
+                   model3.setValueAt(text32.getText(), i, 1);
+                   model3.setValueAt(text33.getText(), i, 2);
+                }
+                else
+                    System.out.println("Update Error");
+            }
+        });
+        
+        update4.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int i = table3.getSelectedRow();
+                if(i >= 0) 
+                {
+                   model4.setValueAt(text41.getText(), i, 0);
+                   model4.setValueAt(text42.getText(), i, 1);
+                   model4.setValueAt(text43.getText(), i, 2);
+                }
+                else
+                    System.out.println("Update Error");
+            }
+        });
+        
+        update5.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int i = table5.getSelectedRow();
+                if(i >= 0) 
+                {
+                   model5.setValueAt(text51.getText(), i, 0);
+                   model5.setValueAt(text52.getText(), i, 1);
+                   model5.setValueAt(text53.getText(), i, 2);
+                   model5.setValueAt(text54.getText(), i, 3);
+                }
+                else
+                    System.out.println("Update Error");
+            }
+        });
+        
+        
+	    frame.setSize(1000,600);
+	    frame.setLocationRelativeTo(null);
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setVisible(true);
         
     }
     public class addListener implements ActionListener{
     	public void actionPerformed(ActionEvent e){
     		if(e.getSource()==add1){
-    			Object[] row = new Object[4];
+    			Object[] row = new Object[3];
                 row[0] = text11.getText();
                 row[1] = text12.getText();
                 row[2] = text13.getText();
@@ -384,7 +462,7 @@ public class adminInput {
                 model1.addRow(row);
     		}
     		if(e.getSource()==add2){
-    			Object[] row = new Object[4];
+    			Object[] row = new Object[3];
                 row[0] = text21.getText();
                 row[1] = text22.getText();
                 row[2] = text23.getText();
@@ -392,7 +470,7 @@ public class adminInput {
                 model2.addRow(row);
     		}
     		if(e.getSource()==add3){
-    			Object[] row = new Object[4];
+    			Object[] row = new Object[3];
                 row[0] = text31.getText();
                 row[1] = text32.getText();
                 row[2] = text33.getText();
@@ -400,7 +478,7 @@ public class adminInput {
                 model3.addRow(row);
     		}
     		if(e.getSource()==add4){
-    			Object[] row = new Object[4];
+    			Object[] row = new Object[3];
                 row[0] = text41.getText();
                 row[1] = text42.getText();
                 row[2] = text43.getText();
@@ -408,7 +486,7 @@ public class adminInput {
                 model4.addRow(row);
     		}
     		if(e.getSource()==add5){
-    			Object[] row = new Object[4];
+    			Object[] row = new Object[3];
                 row[0] = text51.getText();
                 row[1] = text52.getText();
                 row[2] = text53.getText();
