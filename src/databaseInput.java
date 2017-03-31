@@ -49,7 +49,7 @@ public class databaseInput {
 				data d = new data(stud_group_data, course_data, professor_data,class_data,classroom_data);
 				GeneticAlgorithm g = new GeneticAlgorithm(d);
 				//Scheduler s = new Scheduler(d);
-				dbFrame.dispose();
+				//dbFrame.dispose();
 				//new Start();
 			}
         }
@@ -86,7 +86,7 @@ public class databaseInput {
         Object[] columns2 = {"ID","Name","Age"};
         Object[] columns3 = {"Number","Size","Computer"};
         Object[] columns4 = {"Batch ID","Name","Strength"};
-        Object[] columns5 = {"Batch ID","Course Code","Duration","Professor ID"};
+        Object[] columns5 = {"Batch ID","Course Code","Duration","Professor ID","Computer Required"};
         
         model1 = new DefaultTableModel();
         model1.setColumnIdentifiers(columns1);
@@ -145,7 +145,7 @@ public class databaseInput {
 
         	ResultSet res4 = s.executeQuery(q4);
         	while(res4.next()){
-        		int id =res4.getInt(1);
+        		String id =res4.getString(1);
         		String name = res4.getString(2);	
         		int strength = res4.getInt(3);
         		stud_group temp = new stud_group(id,name,strength);
@@ -157,7 +157,8 @@ public class databaseInput {
         		String course_code = res5.getString(2);
         		int dur =res5.getInt(3);
         		int prof_id = res5.getInt(4);
-        		class_ temp = new class_(bat_id,course_code,dur,prof_id);
+        		boolean comp_req = res5.getBoolean(5);
+        		class_ temp = new class_(bat_id,course_code,dur,prof_id,comp_req);
         		class_data.add(temp);
         	}        
         }
@@ -197,11 +198,12 @@ public class databaseInput {
         	model4.addRow(row);
         }
         for(class_ i:class_data){
-        	Object[] row = new Object[4];
+        	Object[] row = new Object[5];
         	row[0] = i.batch_id;
         	row[1] = i.course_code;
         	row[2] = i.duration;
         	row[3] = i.professor_id;
+        	row[4] = i.computer_req;
         	model5.addRow(row);
         }
         }

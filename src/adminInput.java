@@ -22,8 +22,8 @@ public class adminInput {
 	JMenu option = new JMenu("Options");
 	JTabbedPane tabPane;
 	JTable table1,table2,table3,table4,table5;
-	JLabel label11,label12,label13,label21,label22,label23,label31,label32,label33,label41,label42,label43,label51,label52,label53,label54;
-	JTextField text11,text12,text13,text21,text22,text23,text31,text32,text33,text41,text42,text43,text51,text52,text53,text54;
+	JLabel label11,label12,label13,label21,label22,label23,label31,label32,label33,label41,label42,label43,label51,label52,label53,label54,label55;
+	JTextField text11,text12,text13,text21,text22,text23,text31,text32,text33,text41,text42,text43,text51,text52,text53,text54,text55;
 	JPanel panel1, panel2, panel3, panel4, panel5;
 	JButton add1,delete1,update1,add2,delete2,update2,add3,delete3,update3,add4,delete4,update4,add5,delete5,update5;
     DefaultTableModel model1,model2,model3,model4,model5;
@@ -81,7 +81,7 @@ public class adminInput {
         Object[] columns2 = {"ID","Name","Age"};
         Object[] columns3 = {"Number","Size","Computer"};
         Object[] columns4 = {"Batch ID","Name","Strength"};
-        Object[] columns5 = {"Batch ID","Course Code","Duration","Professor ID"};
+        Object[] columns5 = {"Batch ID","Course Code","Duration","Professor ID","Computer Required"};
         
         model1 = new DefaultTableModel();
         model1.setColumnIdentifiers(columns1);
@@ -123,6 +123,7 @@ public class adminInput {
         text52 = new JTextField();
         text53 = new JTextField();
         text54 = new JTextField();
+        text55 = new JTextField();
         
         label11 = new JLabel("Code");
         label12 = new JLabel("Name");
@@ -140,6 +141,7 @@ public class adminInput {
         label52 = new JLabel("Course Code");
         label53 = new JLabel("Duration");
         label54 = new JLabel("Professor ID");
+        label55 = new JLabel("Computer Required");
         
         
         // create JButtons
@@ -179,6 +181,7 @@ public class adminInput {
         text52.setBounds(120, 350, 100, 25);
         text53.setBounds(120, 380, 100, 25);
         text54.setBounds(120, 410, 100, 25);
+        text55.setBounds(120, 440, 100, 25);
         
         label11.setBounds(20, 320, 100, 25);
         label12.setBounds(20, 350, 100, 25);
@@ -200,6 +203,7 @@ public class adminInput {
         label52.setBounds(20, 350, 100, 25);
         label53.setBounds(20, 380, 100, 25);
         label54.setBounds(20, 410, 100, 25);
+        label55.setBounds(20, 440, 100, 25);
         
         add1.setBounds(350, 320, 100, 25);
         update1.setBounds(350, 365, 100, 25);
@@ -259,6 +263,7 @@ public class adminInput {
         panel5.add(text52);
         panel5.add(text53);
         panel5.add(text54);
+        panel5.add(text55);
         
         panel1.add(label11);
         panel1.add(label12);
@@ -276,6 +281,7 @@ public class adminInput {
         panel5.add(label52);
         panel5.add(label53);
         panel5.add(label54);
+        panel5.add(label55);
     
         // add JButtons to the jframe
         panel1.add(add1);
@@ -352,6 +358,7 @@ public class adminInput {
             text52.setText(model5.getValueAt(i5, 1).toString());
             text53.setText(model5.getValueAt(i5, 2).toString());
             text54.setText(model5.getValueAt(i5, 3).toString());
+            text55.setText(model5.getValueAt(i5, 4).toString());
             }
         }
         };
@@ -438,6 +445,7 @@ public class adminInput {
                    model5.setValueAt(text52.getText(), i, 1);
                    model5.setValueAt(text53.getText(), i, 2);
                    model5.setValueAt(text54.getText(), i, 3);
+                   model5.setValueAt(text55.getText(), i, 4);
                 }
                 else
                     System.out.println("Update Error");
@@ -486,11 +494,12 @@ public class adminInput {
                 model4.addRow(row);
     		}
     		if(e.getSource()==add5){
-    			Object[] row = new Object[3];
+    			Object[] row = new Object[5];
                 row[0] = text51.getText();
                 row[1] = text52.getText();
                 row[2] = text53.getText();
                 row[3] = text54.getText();
+                row[4] = text55.getText();
                 // add row to the model
                 model5.addRow(row);
     		}
@@ -590,6 +599,7 @@ public class adminInput {
                    model5.setValueAt(text52.getText(), i, 1);
                    model5.setValueAt(text53.getText(), i, 2);
                    model5.setValueAt(text54.getText(), i, 3);
+                   model5.setValueAt(text55.getText(), i, 4);
                 }
                 else
                     System.out.println("Update Error");

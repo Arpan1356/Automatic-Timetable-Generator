@@ -12,7 +12,7 @@ public class GeneticAlgorithm {
 		
 		for(int i=0; i<populationSize;++i){
 			for(int j=0; j<population.get(i).map.length;++j){
-				System.out.println(population.get(i).map[j]);
+				System.out.println(population.get(i).map[j] + " " +population.get(i).tot);
 			}
 			System.out.println();
 			
