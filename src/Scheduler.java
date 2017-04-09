@@ -4,6 +4,11 @@ public class Scheduler {
 	int nRoom,nClass,map[],count[],tot;
 	float fitness;
 	
+	public Scheduler(Scheduler another){
+		this.inputData = another.inputData;
+		this.nRoom = another.nRoom;
+		this.nClass = another.nClass;
+	}
 	public Scheduler(data D){
 		this.inputData= D;
 		nRoom = D.crD.size();
@@ -22,17 +27,16 @@ public class Scheduler {
 		}
 	}
 	public void calFitness(){
+		tot=0;
 		
-		int temp=0; 
 		for(int i=0; i<nClass; ++i){// MAIN LOOP THROUGH CLASSES
-			
 			
 			//spare room
 			if(count[map[i]]==1)
-				temp++;
+				tot++;
 			
 			//strength of stud_group vs size of room
-			int room = (map[i]%48)/8;
+			int room = (map[i]%(8*nRoom))/8;
 			
 			int studnum=0;
 			int roomSize = inputData.crD.get(room).size;
@@ -45,7 +49,7 @@ public class Scheduler {
 			}
 			
 			if(studnum < roomSize){
-				temp++;
+				tot++;
 			}
 			
 			//computer available
@@ -54,45 +58,46 @@ public class Scheduler {
 			boolean roomComp = inputData.crD.get(room).computer;
 			
 			if( studComp == true && roomComp == true)
-				temp++;
+				tot++;
 			else if(studComp == false)
-				temp++;
+				tot++;
 			
 			//stud_group has any other class at that time
 			int flag1=0;
 			for(int j=0;j<nClass;++j){
 				if(inputData.cD.get(j).batch_id == inputData.cD.get(i).batch_id){
-					if((map[i]/48) == (map[j]/48)){ // located in same day
-						if((map[i]%48)/8 == (map[j]%48)/8){ // at same time
-						flag1++;
-						break;
+					if((map[i]/(8*nRoom)) == (map[j]/(8*nRoom))){ // located in same day
+						if((map[i]%(8*nRoom))%8 == (map[j]%(8*nRoom))%8){ // at same time
+							flag1++;
+							break;
 						}
 					}
 						
 				}
 			}
 			if(flag1==1)
-				temp++;
+				tot++;
 			
 			//prof has any other class at that time
 			flag1=0;
-			/*
+			
 			for(int j=0;j<nClass;++j){
-				if(inputData.pD.get(j).id == inputData.cD.get(i).professor_id){
-					flag1++;
+				if(inputData.cD.get(j).professor_id == inputData.cD.get(i).professor_id){
+					if((map[i]/(8*nRoom)) == (map[j]/(8*nRoom))){ // located in same day
+						if((map[i]%(8*nRoom))%8 == (map[j]%(8*nRoom))%8){ // at same time
+							flag1++;
+							break;
+						}
+					}
 						
 				}
 			}
 			if(flag1==1)
-				temp++;
-				*/
-			
-			
-			tot = temp;
-			
-
-			
+				tot++;
 		}
+		
+		fitness = tot/((float)5*nClass);
+		fitness*=100000;
 		
 	}
 	

@@ -14,6 +14,7 @@ public class databaseInput {
 	JTabbedPane pane;
 	JPanel panel1,panel2,panel3,panel4,panel5;
 	String url = "jdbc:mysql://localhost:3306/timetabledata1";
+	driver driver1;
 
 	Vector<stud_group> stud_group_data;
 	Vector<course> course_data;
@@ -47,16 +48,25 @@ public class databaseInput {
         i3.addActionListener( new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				data d = new data(stud_group_data, course_data, professor_data,class_data,classroom_data);
-				GeneticAlgorithm g = new GeneticAlgorithm(d);
-				//Scheduler s = new Scheduler(d);
-				//dbFrame.dispose();
-				//new Start();
+				driver1 = new driver(d);
+			}
+        }
+        );
+        JMenuItem i4 = new JMenuItem("View Timetable");
+        i4.addActionListener( new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				if(driver1 != null){
+					new timetableSelector(driver1.solution);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Timetable not yet created");
 			}
         }
         );
         option.add(i1);
         option.add(i2);
         option.add(i3);
+        option.add(i4);
 		
 		
 		

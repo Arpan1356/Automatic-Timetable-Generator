@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -50,8 +51,16 @@ public class adminInput {
 			}
         }
         );
+        JMenuItem i3 = new JMenuItem("Create Timetable");
+        i3.addActionListener( new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				trigger();
+			}
+        }
+        );
         option.add(i1);
         option.add(i2);
+        option.add(i3);
         
         
         
@@ -133,7 +142,8 @@ public class adminInput {
         label23 = new JLabel("Age");
         label31 = new JLabel("Number");
         label32 = new JLabel("Size");
-        label33 = new JLabel("Computer");
+        label33 = new JLabel("Computer (1/0)");
+        label33.setToolTipText("Enter either 0 or 1");
         label41 = new JLabel("Batch ID");
         label42 = new JLabel("Name");
         label43 = new JLabel("Strength");
@@ -161,27 +171,28 @@ public class adminInput {
         delete5 = new JButton("Delete");
         update5 = new JButton("Update");
         
-        text11.setBounds(120, 320, 100, 25);
-        text12.setBounds(120, 350, 100, 25);
-        text13.setBounds(120, 380, 100, 25);
+        text11.setBounds(120, 320, 100, 25);text11.setText("M202");
+        text12.setBounds(120, 350, 100, 25);text12.setText("LA");
+        text13.setBounds(120, 380, 100, 25);text13.setText("SAS");
         
-        text21.setBounds(120, 320, 100, 25);
-        text22.setBounds(120, 350, 100, 25);
-        text23.setBounds(120, 380, 100, 25);
+        text21.setBounds(120, 320, 100, 25);text21.setText("1021");
+        text22.setBounds(120, 350, 100, 25);text22.setText("NISHA");
+        text23.setBounds(120, 380, 100, 25);text23.setText("23");
         
-        text31.setBounds(120, 320, 100, 25);
-        text32.setBounds(120, 350, 100, 25);
-        text33.setBounds(120, 380, 100, 25);
+        text31.setBounds(120, 320, 100, 25);text31.setText("202");
+        text32.setBounds(120, 350, 100, 25);text32.setText("40");
+        text33.setBounds(120, 380, 100, 25);text33.setText("0");
+        text33.setToolTipText("Enter either 0 or 1");
         
-        text41.setBounds(120, 320, 100, 25);
-        text42.setBounds(120, 350, 100, 25);
-        text43.setBounds(120, 380, 100, 25);
+        text41.setBounds(120, 320, 100, 25);text41.setText("203");
+        text42.setBounds(120, 350, 100, 25);text42.setText("E2");
+        text43.setBounds(120, 380, 100, 25);text43.setText("40");
         
-        text51.setBounds(120, 320, 100, 25);
-        text52.setBounds(120, 350, 100, 25);
-        text53.setBounds(120, 380, 100, 25);
-        text54.setBounds(120, 410, 100, 25);
-        text55.setBounds(120, 440, 100, 25);
+        text51.setBounds(120, 320, 100, 25);text51.setText("202");
+        text52.setBounds(120, 350, 100, 25);text52.setText("M202");
+        text53.setBounds(120, 380, 100, 25);text53.setText("1");
+        text54.setBounds(120, 410, 100, 25);text54.setText("1021");
+        text55.setBounds(120, 440, 100, 25);text55.setText("0");
         
         label11.setBounds(20, 320, 100, 25);
         label12.setBounds(20, 350, 100, 25);
@@ -331,6 +342,7 @@ public class adminInput {
             int i5 = table5.getSelectedRow();	
             
             if(i1 != -1){
+            	System.out.println(table1.getSelectedColumn());
             	text11.setText(model1.getValueAt(i1, 0).toString());
             	text12.setText(model1.getValueAt(i1, 1).toString());
             	text13.setText(model1.getValueAt(i1, 2).toString());
@@ -605,6 +617,68 @@ public class adminInput {
                     System.out.println("Update Error");
     		}
     	}
+    }
+    
+    public void trigger(){
+    	new driver(initializeData());
+    }
+    
+    public data initializeData(){
+    	Vector<course> courseV= new Vector<course>();
+    	Vector<class_> classV= new Vector<class_>();
+    	Vector<stud_group> stud_grpV= new Vector<stud_group>();
+    	Vector<classroom> classroomV= new Vector<classroom>();
+    	Vector<professor> professorV= new Vector<professor>();
+    	
+    	for(int i=0; i<model1.getRowCount(); ++i){
+    		String a = (String) model1.getValueAt(i, 0);
+    		String b = (String) model1.getValueAt(i, 1);
+    		String c = (String) model1.getValueAt(i, 2);
+    		course temp = new course(a,b,c);
+    		courseV.add(temp);
+    	}
+    	
+    	for(int i=0; i<model2.getRowCount(); ++i){
+    		int a =  Integer.parseInt((model2.getValueAt(i, 0)).toString()) ;
+    		String b = (String) model2.getValueAt(i, 1);
+    		int c = Integer.parseInt(model2.getValueAt(i, 2).toString());
+    		professor temp = new professor(a,b,c);
+    		professorV.add(temp);
+    	}
+    	for(int i=0; i<model3.getRowCount(); ++i){
+    		int a = Integer.parseInt(model3.getValueAt(i, 0).toString());
+    		int b = Integer.parseInt(model3.getValueAt(i, 1).toString());
+    		int x = Integer.parseInt(model3.getValueAt(i, 2).toString());
+    		boolean c=false;
+    		if(x==1)
+    			c=true;
+    		classroom temp = new classroom(a,b,c);
+    		classroomV.add(temp);
+    	}
+    	
+    	for(int i=0; i<model4.getRowCount(); ++i){
+    		String a = (String) model4.getValueAt(i, 0);
+    		String b = (String) model4.getValueAt(i, 1);
+    		int c = Integer.parseInt(model4.getValueAt(i, 2).toString());
+    		stud_group temp = new stud_group(a,b,c);
+    		stud_grpV.add(temp);
+    	}
+    	
+    	for(int i=0; i<model5.getRowCount(); ++i){
+    		String a = (String) model5.getValueAt(i, 0);
+    		String b = (String) model5.getValueAt(i, 1);
+    		int c = Integer.parseInt(model5.getValueAt(i, 2).toString());
+    		int d = Integer.parseInt(model5.getValueAt(i, 3).toString());
+    		String x = (String) model5.getValueAt(i, 4);
+    		boolean e = false;
+    		if(x=="1")
+    			e=true;
+    		class_ temp = new class_(a,b,c,d,e);
+    		classV.add(temp);
+    	}
+    	    	
+    	data D = new data(stud_grpV,courseV,professorV,classV,classroomV);
+    	return D;
     }
 
 }
