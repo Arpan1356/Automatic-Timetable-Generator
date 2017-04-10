@@ -24,10 +24,11 @@ public class printSchedule {
 	Object[] r5 = new Object[10];
 	
 	public printSchedule(Scheduler s, String type, Object id) {
+		System.out.println(type + " " + id);
 		this.sol = s;
 		mainLabel = mainLabel + type + ":" + id.toString();
 		frame = new JFrame("Automatically Generated Timetable");//frame settings
-		frame.setBounds(100,100,1300,700);
+		frame.setBounds(100,100,1260,700);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		frame.setResizable(false);
@@ -72,7 +73,7 @@ public class printSchedule {
 		head.setPreferredSize(new Dimension(100,table.getRowHeight()+50));
 		head.setBackground(Color.CYAN);
 		for(int row_i=0 ; row_i<table.getRowCount(); ++row_i){
-			table.setRowHeight(row_i, 60);
+			table.setRowHeight(row_i, 70);
 		}
 		
 		
@@ -80,7 +81,7 @@ public class printSchedule {
 		JScrollPane scroller = new JScrollPane(table);
 		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scroller.setBounds(60, 60, 1100, 440);
+		scroller.setBounds(60, 60, 1150, 440);
 		frame.add(scroller);
 		
 		frame.setVisible(true);
@@ -201,33 +202,37 @@ public class printSchedule {
 		row5[5] = "H";
 		
 		for(int i=0; i<sol.nClass; ++i){
-			if(sol.inputData.cD.get(i).batch_id == batchId){
+			if(batchId.equals(sol.inputData.cD.get(i).batch_id)){
 				int index;
 				switch(getDayNo(sol.map[i])){
+				
 					case 0: index = getTimeSlot(sol.map[i])+1;
 							if(index >= 5)
 							index++;
-							row1[index] = sol.inputData.cD.get(i).course_code + "-" + getRoomNo(sol.map[i]);
+							row1[index] = sol.inputData.cD.get(i).course_code + "-" + sol.inputData.crD.get(getRoomNo(sol.map[i])).number;
 							break;
 					case 1: index = getTimeSlot(sol.map[i])+1;
 							if(index >= 5)
 							index++;
-							row2[index] = sol.inputData.cD.get(i).course_code + "-" + getRoomNo(sol.map[i]);
+							row2[index] = sol.inputData.cD.get(i).course_code + "-" + sol.inputData.crD.get(getRoomNo(sol.map[i])).number;
 							break;
 					case 2: index = getTimeSlot(sol.map[i])+1;
 							if(index >= 5)
 							index++;
-							row3[index] = sol.inputData.cD.get(i).course_code + "-" + getRoomNo(sol.map[i]);
+							row3[index] = sol.inputData.cD.get(i).course_code + "-" + sol.inputData.crD.get(getRoomNo(sol.map[i])).number;
 							break;
 					case 3: index = getTimeSlot(sol.map[i])+1;
 							if(index >= 5)
 							index++;
-							row4[index] = sol.inputData.cD.get(i).course_code + "-" + getRoomNo(sol.map[i]);
+							row4[index] = sol.inputData.cD.get(i).course_code + "-" + sol.inputData.crD.get(getRoomNo(sol.map[i])).number;
 							break;
 					case 4: index = getTimeSlot(sol.map[i])+1;
 							if(index >= 5)
 							index++;
-							row5[index] = sol.inputData.cD.get(i).course_code + "-" + getRoomNo(sol.map[i]);
+							row5[index] = sol.inputData.cD.get(i).course_code + "-" + sol.inputData.crD.get(getRoomNo(sol.map[i])).number;
+							
+							
+							
 							break;
 				}
 			}

@@ -8,7 +8,7 @@ public class driver {
 	
 	public driver(data d){
 		GeneticAlgorithm g = new GeneticAlgorithm(d);
-		g.display();
+		//g.display();
 		
 		System.out.println("*************\n" +g.population.get(0).fitness/100000);
 		
@@ -22,6 +22,8 @@ public class driver {
 		if(generationNo <= maxGeneration){
 			JOptionPane.showMessageDialog(null, "Successfully made timetable");
 			this.solution= g.population.get(0);
+			Login.timetableMade=1;
+			Login.sessionSolution= solution; 
 			//new timetableSelector(solution);
 		}
 		

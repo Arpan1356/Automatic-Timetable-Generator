@@ -65,14 +65,12 @@ public class Scheduler {
 			//stud_group has any other class at that time
 			int flag1=0;
 			for(int j=0;j<nClass;++j){
-				if(inputData.cD.get(j).batch_id == inputData.cD.get(i).batch_id){
-					if((map[i]/(8*nRoom)) == (map[j]/(8*nRoom))){ // located in same day
-						if((map[i]%(8*nRoom))%8 == (map[j]%(8*nRoom))%8){ // at same time
+				if(inputData.cD.get(j).batch_id.equals(inputData.cD.get(i).batch_id)){
+					if((int)(map[i]/(8*nRoom)) ==(int)(map[j]/(8*nRoom))){ // located in same day
+						if((map[i]%8) == (map[j]%8)){//same time
 							flag1++;
-							break;
 						}
 					}
-						
 				}
 			}
 			if(flag1==1)
@@ -83,10 +81,9 @@ public class Scheduler {
 			
 			for(int j=0;j<nClass;++j){
 				if(inputData.cD.get(j).professor_id == inputData.cD.get(i).professor_id){
-					if((map[i]/(8*nRoom)) == (map[j]/(8*nRoom))){ // located in same day
-						if((map[i]%(8*nRoom))%8 == (map[j]%(8*nRoom))%8){ // at same time
+					if((int)(map[i]/(8*nRoom)) ==(int) (map[j]/(8*nRoom))){ // located in same day
+						if((map[i]%8) == (map[j]%8)){//same time
 							flag1++;
-							break;
 						}
 					}
 						

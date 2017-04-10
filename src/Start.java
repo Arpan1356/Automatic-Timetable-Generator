@@ -27,11 +27,6 @@ public class Start {
 		//new adminInput();
 		new databaseInput();
 		//new timetableSelector(null);
-		try {
-			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-		}
-		catch(Exception e) {
-		}
 		//new printSchedule(null,"Room","303");
 	}
 

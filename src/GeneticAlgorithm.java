@@ -48,9 +48,7 @@ public class GeneticAlgorithm {
 		}
 		Collections.sort(crossPop, new sortComparator());
 		return crossPop;
-		
 	}
-	
 	
 	public Scheduler scheduleCrossover(Scheduler s1, Scheduler s2){
 		Scheduler s = new Scheduler(s1);
@@ -70,7 +68,6 @@ public class GeneticAlgorithm {
 		return s;
 		
 	}
-	
 	public Vector<Scheduler> populationSelection(){
 		Vector<Scheduler> selectedPop = new Vector<Scheduler>();
 		for(int i=0;i<selectionSize; ++i){

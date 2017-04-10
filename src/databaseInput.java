@@ -48,15 +48,15 @@ public class databaseInput {
         i3.addActionListener( new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				data d = new data(stud_group_data, course_data, professor_data,class_data,classroom_data);
-				driver1 = new driver(d);
+				new driver(d);
 			}
         }
         );
         JMenuItem i4 = new JMenuItem("View Timetable");
         i4.addActionListener( new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				if(driver1 != null){
-					new timetableSelector(driver1.solution);
+				if(Login.sessionSolution != null){
+					new timetableSelector(Login.sessionSolution);
 				}
 				else
 					JOptionPane.showMessageDialog(null, "Timetable not yet created");

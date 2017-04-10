@@ -8,7 +8,7 @@ public class timetableSelector {
 	JFrame frame;
 	ButtonGroup grp;
 	Scheduler sol;
-	JButton View;
+	JButton View,close;
 	JRadioButton l3,l2,l1;
 	@SuppressWarnings("rawtypes")
 	JComboBox c3,c2,c1;
@@ -48,7 +48,7 @@ public class timetableSelector {
 		
 		Vector<String> stud = new Vector<String>();
 		for(int i=0;i<s.inputData.sgD.size() ;++i){
-			stud.add(s.inputData.sgD.get(i).id);
+			stud.add(s.inputData.sgD.get(i).name);
 		}
 		
 		Vector<Integer> prof = new Vector<Integer>();
@@ -78,6 +78,16 @@ public class timetableSelector {
 		View.setBounds(400,300,80,30);
 		frame.add(View);
 		View.addActionListener(new viewAction());
+		
+		close = new JButton("Close");
+		close.setBounds(500,300,80,30);
+		frame.add(close);
+		close.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				frame.dispose();
+			}
+			
+		});
 		frame.setVisible(true);
 	}
 	
@@ -87,13 +97,44 @@ public class timetableSelector {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==View){
 				if(l1.isSelected()){
+					try {
+						UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+					}
+					catch(Exception e1) {
+					}
 					new printSchedule(sol,"Professor",c1.getSelectedItem());
+					try {
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					}
+					catch(Exception e1) {
+					}
+					
 				}
 				if(l2.isSelected()){
+					try {
+						UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+					}
+					catch(Exception e1) {
+					}
 					new printSchedule(sol,"Student",c2.getSelectedItem());
+					try {
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					}
+					catch(Exception e1) {
+					}
 				}
 				if(l3.isSelected()){
+					try {
+						UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+					}
+					catch(Exception e1) {
+					}
 					new printSchedule(sol,"Room",c3.getSelectedItem());
+					try {
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					}
+					catch(Exception e1) {
+					}
 				}
 			}
 		}

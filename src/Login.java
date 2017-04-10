@@ -1,9 +1,12 @@
 import java.awt.*;
 import javax.swing.*;
+
 import java.awt.event.*;
 import java.util.Arrays;
 
 public class Login {
+	public static Scheduler sessionSolution;
+	public static int timetableMade = 0;
 	private JFrame frmLogin = new JFrame("LOGIN");
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -52,8 +55,14 @@ public class Login {
 				loginname = textField.getText();
 				loginpass = passwordField.getPassword();
 				dialogMessage = "Welcome - " + loginname.toUpperCase();
-				if( (loginname.equals("admin") && Arrays.equals("admin".toCharArray(), loginpass)) || loginname.equals("student") && Arrays.equals("student".toCharArray(), loginpass) ) {
+				if( (loginname.equals("admin") && Arrays.equals("admin".toCharArray(), loginpass)) ) {
 					new Thread(new PBar(loginname)).start();
+				}
+				else if(checkStudent(loginname)){
+					new Thread(new PBar("student")).start();
+				}
+				else if(checkProfessor(loginname)){
+					new Thread(new PBar("professor")).start();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Invaild User Name and Password!" , "ERROR!!!", JOptionPane.INFORMATION_MESSAGE);
@@ -81,6 +90,26 @@ public class Login {
 		
 		frmLogin.setVisible(true);
 	}
+	
+	public boolean checkStudent(String s){ // username is batch name  password is id
+		if(sessionSolution!= null)
+		for(int i=0; i<sessionSolution.inputData.sgD.size();++i){
+			if(sessionSolution.inputData.sgD.get(i).id.equals(s) && sessionSolution.inputData.sgD.get(i).name.equals(new String(passwordField.getPassword()))){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean checkProfessor(String s){ // username is professor name and password is id
+		if(sessionSolution!= null)
+		for(int i=0; i<sessionSolution.inputData.pD.size();++i){
+			if(sessionSolution.inputData.pD.get(i).name.equals(s) && sessionSolution.inputData.pD.get(i).id== Integer.parseInt(new String(passwordField.getPassword()))){
+				return true;
+			}
+		}
+		return false;
+	}
 
 	class PBar implements Runnable {
 		String name;
@@ -102,11 +131,51 @@ public class Login {
 			JOptionPane.showMessageDialog(null, dialogMessage, dialogs, JOptionPane.INFORMATION_MESSAGE);
 			frmLogin.dispose();
 			
-			if(name.equals("student"));
-				//new StudentTimetable(stud_group_id);
-			else if(name.equals("professor"));
-				//new ProfessorTimetable(prof_id);
-			else if(name.equals("admin"));
+			if(name.equals("student")){
+				try{
+					System.out.println(passwordField.getPassword());
+					String pass = new String(passwordField.getPassword());
+					new Login();
+					try {
+						UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+					}
+					catch(Exception e) {
+					}
+					new printSchedule(sessionSolution,"Student",pass);
+					try {
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					}
+					catch(Exception e) {
+					}
+				}
+				catch(Exception e)
+				{
+					JOptionPane.showMessageDialog(null, "Not available. Contact ADMIN");
+				}
+				
+			}
+			else if(name.equals("professor")){
+				
+					if(sessionSolution != null){
+					String tpass = new String(passwordField.getPassword());
+					int pass = Integer.parseInt(tpass);
+					new Login();
+					try {
+						UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+					}
+					catch(Exception e) {
+					}
+					new printSchedule(sessionSolution,"Professor",pass);
+					}
+					else
+						JOptionPane.showMessageDialog(null, "Not available. Contact ADMIN");
+					try {
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					}
+					catch(Exception e) {
+					}
+			}
+			else if(name.equals("admin"))
 				new AdminLog();
 		}
 	}

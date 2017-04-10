@@ -27,8 +27,8 @@ public class AdminLog{
 		logout.setToolTipText("LOG OUT");
 		logout.setContentAreaFilled(false);
 		
-		newData.setBounds(50, 250, 100, 30);
-		oldData.setBounds(50, 300, 100, 30);
+		newData.setBounds(100, 250, 150, 30);
+		oldData.setBounds(100, 300, 150, 30);
 		logout.setBounds(600, 300, 200, 200);
 		
 		newData.addActionListener(new buttonListener());

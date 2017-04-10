@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -58,10 +59,21 @@ public class adminInput {
 			}
         }
         );
+        JMenuItem i4 = new JMenuItem("View Timetable");
+        i4.addActionListener( new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				if(Login.sessionSolution != null){
+					new timetableSelector(Login.sessionSolution);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Timetable not yet created");
+			}			
+        }
+        );
         option.add(i1);
         option.add(i2);
         option.add(i3);
-        
+        option.add(i4);
         
         
         frame.setLayout(new BorderLayout());
