@@ -24,8 +24,8 @@ public class Start {
 		}
 
 		//new Start();
-		//new adminInput();
-		new databaseInput();
+		new adminInput();
+		//new databaseInput();
 		//new timetableSelector(null);
 		//new printSchedule(null,"Room","303");
 	}

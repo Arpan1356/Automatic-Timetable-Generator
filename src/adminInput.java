@@ -1,9 +1,12 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -183,8 +186,8 @@ public class adminInput {
         delete5 = new JButton("Delete");
         update5 = new JButton("Update");
         
-        text11.setBounds(120, 320, 100, 25);text11.setText("M202");
-        text12.setBounds(120, 350, 100, 25);text12.setText("LA");
+        text11.setBounds(120, 320, 100, 25);text11.setText("MAT202");
+        text12.setBounds(120, 350, 100, 25);text12.setText("Linear Algebra");
         text13.setBounds(120, 380, 100, 25);text13.setText("SAS");
         
         text21.setBounds(120, 320, 100, 25);text21.setText("1021");
@@ -196,12 +199,12 @@ public class adminInput {
         text33.setBounds(120, 380, 100, 25);text33.setText("0");
         text33.setToolTipText("Enter either 0 or 1");
         
-        text41.setBounds(120, 320, 100, 25);text41.setText("203");
+        text41.setBounds(120, 320, 100, 25);text41.setText("2031");
         text42.setBounds(120, 350, 100, 25);text42.setText("E2");
         text43.setBounds(120, 380, 100, 25);text43.setText("40");
         
-        text51.setBounds(120, 320, 100, 25);text51.setText("202");
-        text52.setBounds(120, 350, 100, 25);text52.setText("M202");
+        text51.setBounds(120, 320, 100, 25);text51.setText("2031");
+        text52.setBounds(120, 350, 100, 25);text52.setText("MAT202");
         text53.setBounds(120, 380, 100, 25);text53.setText("1");
         text54.setBounds(120, 410, 100, 25);text54.setText("1021");
         text55.setBounds(120, 440, 100, 25);text55.setText("0");
@@ -488,43 +491,161 @@ public class adminInput {
     		if(e.getSource()==add1){
     			Object[] row = new Object[3];
                 row[0] = text11.getText();
+                if(!text11.getText().matches("[A-Z]{3}[0-9]{3}")){
+                	text11.setText("");
+                	text11.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[1] = text12.getText();
+                if(!text12.getText().matches("[a-zA-Z ]{2,20}")){
+                	text12.setText("");
+                	text12.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[2] = text13.getText();
+                if(!text13.getText().matches("[A-Z]{3,5}") || text13.getText().length()>5){
+                	text13.setText("");
+                	text13.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 // add row to the model
+                text11.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+                text12.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+                text13.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
                 model1.addRow(row);
     		}
     		if(e.getSource()==add2){
     			Object[] row = new Object[3];
                 row[0] = text21.getText();
+                if(!text21.getText().matches("[0-9]{4,5}")){
+                	text21.setText("");
+                	text21.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[1] = text22.getText();
+                if(!text22.getText().matches("[a-zA-Z ]{2,20}")){
+                	text22.setText("");
+                	text22.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[2] = text23.getText();
+                if(!text23.getText().matches("[0-9]{1,3}")){
+                	text23.setText("");
+                	text23.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 // add row to the model
+                text21.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+                text22.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+                text23.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
                 model2.addRow(row);
     		}
     		if(e.getSource()==add3){
     			Object[] row = new Object[3];
                 row[0] = text31.getText();
+                if(!text31.getText().matches("[0-9]{1,3}")){
+                	text31.setText("");
+                	text31.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[1] = text32.getText();
+                if(!text32.getText().matches("[0-9]{1,3}")){
+                	text32.setText("");
+                	text32.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[2] = text33.getText();
+                if(!text33.getText().matches("[01]")){
+                	text33.setText("");
+                	text33.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 // add row to the model
+                text31.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+                text32.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+                text33.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
                 model3.addRow(row);
     		}
     		if(e.getSource()==add4){
     			Object[] row = new Object[3];
                 row[0] = text41.getText();
+                if(!text41.getText().matches("[0-9]{4,5}")){
+                	text41.setText("");
+                	text41.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[1] = text42.getText();
+                if(!text42.getText().matches("[a-zA-Z]{1,3}[0-9]{1,2}")){
+                	text42.setText("");
+                	text42.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[2] = text43.getText();
+                if(!text43.getText().matches("[0-9]{1,3}")){
+                	text43.setText("");
+                	text43.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 // add row to the model
+                text41.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+                text42.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+                text43.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
                 model4.addRow(row);
     		}
     		if(e.getSource()==add5){
     			Object[] row = new Object[5];
                 row[0] = text51.getText();
+                if(!text51.getText().matches("[0-9]{4,5}")){
+                	text51.setText("");
+                	text51.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[1] = text52.getText();
+                if(!text52.getText().matches("[a-zA-Z]{3}[0-9]{3}")){
+                	text52.setText("");
+                	text52.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[2] = text53.getText();
+                if(!text53.getText().matches("[0-9]{1,2}")){
+                	text53.setText("");
+                	text53.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[3] = text54.getText();
+                if(!text54.getText().matches("[0-9]{4,5}")){
+                	text54.setText("");
+                	text54.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 row[4] = text55.getText();
+                if(!text55.getText().matches("[01]")){
+                	text55.setText("");
+                	text55.setBorder(BorderFactory.createLineBorder(Color.red));
+                	JOptionPane.showMessageDialog(frame, "Invalid Input");
+                	return ;
+                }
                 // add row to the model
+                text51.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+                text52.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+                text53.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+                text54.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
                 model5.addRow(row);
     		}
     	}
