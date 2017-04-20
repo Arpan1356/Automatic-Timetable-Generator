@@ -23,8 +23,8 @@ public class Start {
 		catch(Exception e) {
 		}
 
-		//new Start();
-		new adminInput();
+		new Start();
+		//new adminInput();
 		//new databaseInput();
 		//new timetableSelector(null);
 		//new printSchedule(null,"Room","303");

@@ -108,7 +108,7 @@ public class databaseInput {
         model4.setColumnIdentifiers(columns4);
         model5 = new DefaultTableModel();
         model5.setColumnIdentifiers(columns5);
-        //table ready to be filled now
+        //tables ready to be filled now
 		
         try{
         	Class.forName("com.mysql.jdbc.Driver");
@@ -170,7 +170,7 @@ public class databaseInput {
         		boolean comp_req = res5.getBoolean(5);
         		class_ temp = new class_(bat_id,course_code,dur,prof_id,comp_req);
         		class_data.add(temp);
-        	}        
+        	}
         }
         catch(SQLException e){
         	e.printStackTrace();
@@ -218,7 +218,10 @@ public class databaseInput {
         }
         }
         catch(NullPointerException e){
-        	System.out.println("Please check database connection.");
+        	JOptionPane.showMessageDialog(dbFrame, "Please check database connection.");
+        }
+        catch(Exception e){
+        	JOptionPane.showMessageDialog(dbFrame, "Unknown Error");
         }
         //setting model
         table1.setModel(model1);

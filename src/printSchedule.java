@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -8,6 +9,14 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+
 
 
 public class printSchedule {
@@ -16,6 +25,8 @@ public class printSchedule {
 	JTable table;
 	DefaultTableModel model;
 	String mainLabel = "Timetable- ";
+	JButton send = new JButton("Get Notification");
+	JTextField tf = new JTextField();
 	Scheduler sol;
 	Object[] r1 = new Object[10];
 	Object[] r2 = new Object[10];
@@ -29,6 +40,29 @@ public class printSchedule {
 		mainLabel = mainLabel + type + ":" + id.toString();
 		frame = new JFrame("Automatically Generated Timetable");//frame settings
 		frame.setBounds(100,100,1260,700);
+		send.setBounds(100,500,200,50);
+		send.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource()==send && tf.getText().equals("+918903367202")){
+					String ACCOUNT_SID = "ACd28c4735c6bf0bdc2abf8e0588b5f315";
+					String AUTH_TOKEN = "e0ad51708d5388ff2b8faadca1c511d1";
+
+					    Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+					    Message message = Message.creator(new PhoneNumber("+918903367202"),//9943622203
+					        new PhoneNumber("+16143899818"), 
+					        "Dear User. Your timetable has been generated. Please Check!").create();
+					    //QRmMJP/EHyL6mj3hW4X05hP1q78ElytBEthaIuWd
+					    
+					    System.out.println(message.getSid());
+				}
+			}
+			
+		});
+		frame.add(send);
+		tf.setBounds(100,560,200,50);
+		frame.add(tf);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		frame.setResizable(false);
@@ -81,7 +115,7 @@ public class printSchedule {
 		JScrollPane scroller = new JScrollPane(table);
 		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scroller.setBounds(60, 60, 1150, 440);
+		scroller.setBounds(60, 60, 1150, 400);
 		frame.add(scroller);
 		
 		frame.setVisible(true);
