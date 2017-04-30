@@ -62,6 +62,7 @@ public class printSchedule {
 		});
 		frame.add(send);
 		tf.setBounds(100,560,200,50);
+		tf.setText("+918903367202");
 		frame.add(tf);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
@@ -264,9 +265,7 @@ public class printSchedule {
 							if(index >= 5)
 							index++;
 							row5[index] = sol.inputData.cD.get(i).course_code + "-" + sol.inputData.crD.get(getRoomNo(sol.map[i])).number;
-							
-							
-							
+														
 							break;
 				}
 			}
@@ -357,7 +356,8 @@ public class printSchedule {
 		public Component getTableCellRendererComponent (JTable table, 
 		Object obj, boolean isSelected, boolean hasFocus, int row, int column) {
 			this.setHorizontalAlignment(SwingConstants.CENTER);
-		  Component cell = super.getTableCellRendererComponent(
+			
+		Component cell = super.getTableCellRendererComponent(
 		   table, obj, isSelected, hasFocus, row, column);
 		  
 		  if (column == 0) {

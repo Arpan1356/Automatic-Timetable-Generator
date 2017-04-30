@@ -20,7 +20,7 @@ public class driver {
 			System.out.println("*************\n" +g.population.get(0).fitness);
 		}
 		if(generationNo <= maxGeneration){
-			JOptionPane.showMessageDialog(null, "Successfully made timetable");
+			JOptionPane.showMessageDialog(null, "Timetable has been generated successfully!");
 			this.solution= g.population.get(0);
 			Login.timetableMade=1;
 			Login.sessionSolution= solution; 

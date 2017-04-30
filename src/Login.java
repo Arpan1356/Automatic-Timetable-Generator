@@ -12,6 +12,7 @@ public class Login {
 	private JPasswordField passwordField;
 	private String dialogMessage, dialogs;
 	private JProgressBar progressBar;
+	public JButton info;
 
 	public Login() {
 		//frame setting
@@ -73,6 +74,23 @@ public class Login {
 		});
 		btnNewButton.setBounds(50, 208, 89, 23);
 		backImage.add(btnNewButton);
+		
+		
+		
+		info = new JButton(new ImageIcon("imgs\\help.jpg"));
+		info.setToolTipText("HELP");
+		info.setBounds(240, 20, 70, 75);
+		info.setContentAreaFilled(false);
+		info.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource()== info)
+					JOptionPane.showMessageDialog(frmLogin,"Enter Username and password\nStudent:(Id,Branch Name)\nProf(Name,ID)" );
+			}
+			
+		});
+		backImage.add(info);
 
 		JButton btnNewButton_1 = new JButton("Reset");
 		btnNewButton_1.addActionListener(new ActionListener() {

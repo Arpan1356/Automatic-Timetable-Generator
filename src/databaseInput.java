@@ -87,16 +87,21 @@ public class databaseInput {
         pane.addTab("Class",panel5);
         
         table1 = new JTable();
+        table1.setEnabled(false);
         table2 = new JTable(); 
+        table2.setEnabled(false);
         table3 = new JTable(); 
+        table3.setEnabled(false);
         table4 = new JTable(); 
+        table4.setEnabled(false);
         table5 = new JTable(); 
+        table5.setEnabled(false);
 		
         Object[] columns1 = {"Code","Name","Department"};
         Object[] columns2 = {"ID","Name","Age"};
         Object[] columns3 = {"Number","Size","Computer"};
         Object[] columns4 = {"Batch ID","Name","Strength"};
-        Object[] columns5 = {"Batch ID","Course Code","Duration","Professor ID","Computer Required"};
+        Object[] columns5 = {"Batch ID","Course Code","Credits","Professor ID","Computer Required"};
         
         model1 = new DefaultTableModel();
         model1.setColumnIdentifiers(columns1);

@@ -8,24 +8,24 @@ public class About {
 	public About() {
 		frmAboutUs.add(panel);
 		frmAboutUs.setResizable(false);
-		frmAboutUs.setBounds(100, 100, 450, 450);
+		frmAboutUs.setBounds(100, 100, 650, 450);
 		frmAboutUs.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmAboutUs.setLocationRelativeTo(null);
 		
 		panel.setBackground(Color.getHSBColor(340, (float) 0.013, (float) 0.91));
 		panel.setLayout(null);
 
-		JTextArea tf = new JTextArea("The SRS document gathers all the pre-requisites of the software development and lays out all the components of development in a structural way. It also makes the comprehensive description of the intended purpose and environment of our software. It ensures that the development of the software goes according to plan.");
+		JTextArea tf = new JTextArea("The automatic timetable generator take the input from the user, either manually or using a MySQL database. The user can give all the academics details of the institution such as professor, students, classrooms, and courses.");
 		tf.setEditable(false);
 		tf.setLineWrap(true);
 		tf.setWrapStyleWord(true);
-		tf.setBounds(20, 100, 400, 140);
+		tf.setBounds(20, 100, 560, 140);
 		panel.add(tf);
 		
 		JLabel lblAboutUs = new JLabel("Automatic Timetable Generator");
 		lblAboutUs.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAboutUs.setFont(new Font("Chiller", Font.BOLD, 35));
-		lblAboutUs.setBounds(10, 11, 400, 65);
+		lblAboutUs.setBounds(10, 11, 560, 65);
 		panel.add(lblAboutUs);
 
 		JLabel lblNewLabel = new JLabel("");
